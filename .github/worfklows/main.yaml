@@ -1,0 +1,28 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    environment: devl
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy terraform
+        uses: androzo/terraform-deploy@main
+        with:
+          terraform_path: terraform
+          role_arn: ${{ secrets.AWS_GITHUB_OIDC_ROLE }}
+        env:
+          TF_VAR_environment: devl
+          TF_VAR_team_name: team-anders
+          TF_VAR_region: sa-east-1
