@@ -1,9 +1,15 @@
 terraform {
   backend "s3" {
     bucket  = "androzo-terraform-tfstate" # Replace with your S3 bucket name
-    key     = "test-bucket.tfstate"       # Path to the state file in the folder
+    key                  = "team-anders/iam-permission-boundaries.tfstate" # Path to the state file in the folder
+    workspace_key_prefix = "team-anders"                         # Prefix for workspaces
     region  = "sa-east-1"
     encrypt = true
+    tags = {
+      Name        = "team-anders-bucket"
+      team        = "team-anders"
+      environment = "devl"
+    }
   }
 }
 
