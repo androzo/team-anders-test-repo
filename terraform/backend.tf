@@ -5,11 +5,6 @@ terraform {
     workspace_key_prefix = "team-anders"                         # Prefix for workspaces
     region  = "sa-east-1"
     encrypt = true
-    tags = {
-      Name        = "team-anders-bucket"
-      team        = "team-anders"
-      environment = "devl"
-    }
   }
 }
 
